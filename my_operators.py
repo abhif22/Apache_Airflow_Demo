@@ -19,4 +19,5 @@ class MyFirstOperator(BaseOperator):
 
 class MyFirstPlugin(AirflowPlugin):
     name = "my_first_plugin"
-    operators = [MyFirstOperator]
+    operators = [MyFirstOperator, MyFirstSensor]
+
