@@ -16,6 +16,9 @@ class MyFirstOperator(BaseOperator):
     def execute(self, context):
         log.info("Hello World!")
         log.info('operator_param: %s', self.operator_param)
+        task_instance = context['task_instance']
+        task_instance.xcom_pull('my_sensor_task', key='sensors_minute')
+        log.info('Valid minute as determined by sensor: %s', sensors_minute)
 
 class MyFirstPlugin(AirflowPlugin):
     name = "my_first_plugin"

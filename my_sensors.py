@@ -12,6 +12,8 @@ class MyFirstSensor(BaseSensorOperator):
         if current_minute % 3 != 0:
             log.info("Current minute (%s) not is divisible by 3, sensor will retry.", current_minute)
             return False
-
+            
+        task_instance = context['task_instance']
+        task_instance.xcom_push('sensors_minute', current_minute)
         log.info("Current minute (%s) is divisible by 3, sensor finishing.", current_minute)
         return True
